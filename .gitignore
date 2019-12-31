@@ -32,3 +32,9 @@ build/
 /eureka-server-demo/jars
 /service-provider-demo/jars
 /service-consumer-demo/jars
+/.mvn
+/eureka-server-demo/.mvn
+/service-consumer-demo/.mvn
+/service-provider-demo/.mvn
+/spring--cloud-config-demo/.mvn
+/spring-cloud-sleuth-demo/.mvn
