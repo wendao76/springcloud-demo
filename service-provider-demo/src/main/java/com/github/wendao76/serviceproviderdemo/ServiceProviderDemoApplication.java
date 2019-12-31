@@ -6,10 +6,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 服务提供者
+ * TODO 暂时屏蔽服务发现
  * @author wendao76
  */
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableDiscoveryClient(autoRegister = false)
 public class ServiceProviderDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceProviderDemoApplication.class, args);
