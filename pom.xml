@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>demo-assembly</module>
         <module>eureka-server-demo</module>
         <module>spring-cloud-sleuth-demo</module>
         <module>spring-cloud-config-server-demo</module>
         <module>spring-cloud-zuul-demo</module>
         <module>service-consumer-demo</module>
         <module>service-provider-demo</module>
+        <module>demo-assembly</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -66,7 +66,7 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}-${version}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -10,4 +10,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>demo-assembly</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.wendao76</groupId>
+            <artifactId>eureka-server-demo</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

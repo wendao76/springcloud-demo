@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.github.wendao76</groupId>
     <artifactId>service-consumer-demo</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>service-consumer-demo</name>
     <description>消费者客户端</description>
 

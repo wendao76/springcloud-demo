@@ -73,7 +73,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
-        <finalName>${project.artifactId}-${version}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

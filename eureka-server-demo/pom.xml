@@ -95,7 +95,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>${project.artifactId}-${build.profile.id}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <filters>
             <filter>src/main/filters/filter-${build.profile.id}.properties</filter>
         </filters>
