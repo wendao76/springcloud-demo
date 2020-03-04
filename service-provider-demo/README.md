@@ -7,6 +7,6 @@
 <dependency>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-config</artifactId>
-    <version>2.2.1.RELEASE</version>
+    <version>2.2.0.RELEASE</version>
 </dependency>
 ```
