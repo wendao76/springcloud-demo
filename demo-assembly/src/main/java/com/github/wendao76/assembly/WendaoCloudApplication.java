@@ -11,10 +11,10 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @author wendao76
  */
 @SpringBootApplication
-public class WDCloudApplication {
+public class WendaoCloudApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext commonContext =
-                new SpringApplicationBuilder(WDCloudApplication.class).web(WebApplicationType.NONE).run(new String[0]);
+                new SpringApplicationBuilder(WendaoCloudApplication.class).web(WebApplicationType.NONE).run(new String[0]);
 
         //开启两个注册中心
         new SpringApplicationBuilder(EurekaServerDemoApplication.class)
