@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Description api工具
  * @ClassName OpenApiUtils
- * @Author tiger
+ * @Author lwh
  * @Date 2020/3/22 9:15
  * @Version 1.0
  */

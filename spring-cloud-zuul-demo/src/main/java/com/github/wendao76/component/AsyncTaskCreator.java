@@ -1,9 +1,20 @@
 package com.github.wendao76.component;
 
+import cn.hutool.crypto.digest.DigestUtil;
+import cn.hutool.json.JSONUtil;
+import com.github.wendao76.component.mq.MqSenderClient;
 import com.github.wendao76.model.ReqEntity;
 import com.github.wendao76.model.RespEntity;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**
@@ -13,8 +24,16 @@ import java.util.concurrent.Callable;
  * @Date 2020/3/20 11:02
  * @Version 1.0
  */
+@Service
 public class AsyncTaskCreator {
-	static DeferredResultHolder deferredResultHolder = new DeferredResultHolder();
+	@Autowired
+	MqSenderClient mqSenderClient;
+
+	@Autowired
+	OkHttpClient okHttpClient;
+
+	@Value("${appInstanceId}")
+	private String appInstanceId;
 
 	/**
 	 * @Description Callable 方式异步请求
@@ -24,12 +43,11 @@ public class AsyncTaskCreator {
 	 * @Param [reqParam]
 	 * @Return java.util.concurrent.Callable<cn.com.bosssoft.gpmscloud.openapi.controller.common.RespResult>
 	 */
-	public static Callable<RespEntity> newCallable(ReqEntity reqParam) {
+	public Callable<RespEntity> newCallable(ReqEntity reqParam) {
 		return new Callable<RespEntity>() {
 			@Override
 			public RespEntity call() throws Exception {
-				// TODO 同步请求处理
-				return new RespEntity();
+				return sendRequest(reqParam);
 			}
 		};
 	}
@@ -42,36 +60,49 @@ public class AsyncTaskCreator {
 	 * @Param [reqParam]
 	 * @Return org.springframework.web.context.request.async.DeferredResult<cn.com.bosssoft.gpmscloud.openapi.controller.common.RespResult>
 	 */
-	public static DeferredResult<RespEntity> newDeferredResult(ReqEntity reqParam) {
+	public DeferredResult<RespEntity> newDeferredResult(ReqEntity reqParam) {
 		DeferredResult<RespEntity> deferredResult = new DeferredResult<>(60000L);
-		String requestId = genRequestId(reqParam);
-		reqParam.setRequestId(requestId);
-		//------------调用模拟----------------------------------------------------------------------------------
-		new Thread(() -> {
-			try {
-				Thread.sleep(6000);
-				DeferredResult<RespEntity> dfResult = deferredResultHolder.getMap().get(genRequestId(reqParam));
-				RespEntity respResult = new RespEntity("这个是异步处理结果");
-				//设置结果，唤起处理显出， 返回给用户
-				dfResult.setResult(respResult);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}).start();
-		//------------------------------------------------------------------------------------------------------
 		startAsyncTask(reqParam, deferredResult);
 		return deferredResult;
 	}
 
-	static void startAsyncTask(ReqEntity reqParam, DeferredResult<RespEntity> deferredResult) {
-		//TODO 本地处理 + 服务异步调用
-		startMQListening(reqParam.getRequestId());
-		deferredResultHolder.getMap().put(reqParam.getRequestId(), deferredResult);
+	/**
+	 * 开始异步任务
+	 *
+	 * @param reqParam
+	 * @param deferredResult
+	 */
+	private void startAsyncTask(ReqEntity reqParam, DeferredResult<RespEntity> deferredResult) {
+		String requestId = genRequestId(reqParam);
+		reqParam.setRequestId(requestId);
+		reqParam.setAppInstanceId(appInstanceId);
+		DeferredResultHolder.put(requestId, deferredResult);
+		//发送请求（不直接使用结果）
+		sendRequest(reqParam);
 	}
 
-	static void startMQListening(String requestId) {
-		//TODO 开启MQ监听
+	/**
+	 * @Description 发送请求
+	 * @Author lwh
+	 * @CreatedAt 2020/3/23 20:28
+	 * @UpdatedAt 2020/3/23 20:28
+	 * @Param [reqEntity]
+	 * @Return com.github.wendao76.model.RespEntity
+	 */
+	public RespEntity sendRequest(ReqEntity reqEntity) {
+		final Request request = new Request.Builder()
+				.url(reqEntity.getUrl())
+				.build();
+		final Call call = okHttpClient.newCall(request);
+		try {
+			Response response = call.execute();
+			System.out.println(response.body().string());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
+
 
 	/**
 	 * @Description 根据请求参数生成请求ID
@@ -81,7 +112,7 @@ public class AsyncTaskCreator {
 	 * @Param [reqParam]
 	 * @Return java.lang.String
 	 */
-	private static String genRequestId(ReqEntity reqParam) {
-		return "12345678";
+	private String genRequestId(ReqEntity reqParam) {
+		return DigestUtil.md5Hex(JSONUtil.toJsonStr(reqParam));
 	}
 }

@@ -3,6 +3,7 @@ package com.github.wendao76.config;
 import com.github.wendao76.component.AuthorizationFilter;
 import com.github.wendao76.component.GlobalRouteLocator;
 import com.github.wendao76.component.UrlRewriteFilter;
+import com.github.wendao76.component.ZuulExceptionResolver;
 import com.squareup.okhttp.OkHttpClient;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
@@ -42,5 +43,10 @@ public class CustomZuulConfig {
 	public OkHttpClient okHttpClient() {
 		OkHttpClient okHttpClient = new OkHttpClient();
 		return okHttpClient;
+	}
+
+	@Bean
+	public ZuulExceptionResolver zuulExceptionResolver() {
+		return new ZuulExceptionResolver();
 	}
 }

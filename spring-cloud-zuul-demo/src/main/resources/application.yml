@@ -4,6 +4,20 @@ spring:
   application:
     name:
       microservice-gateway-zuul
+  rabbitmq:
+    host: 192.168.137.128
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 3
+custom-mq:
+  exchangeName: qpx-achive
+  queueNamePre: queue-async-task
+  defaultRouteKey: 123456
 eureka:
   client:
     serviceUrl:

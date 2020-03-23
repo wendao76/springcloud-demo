@@ -5,7 +5,7 @@ import com.netflix.zuul.exception.ZuulException;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 
 /**
- * @Description 路由重写过滤器
+ * @Description 路由重写过滤器(仅zuul根路由或者带转发路由经过)
  * @ClassName UrlRewriteFilter
  * @Author tiger
  * @Date 2020/3/22 16:20

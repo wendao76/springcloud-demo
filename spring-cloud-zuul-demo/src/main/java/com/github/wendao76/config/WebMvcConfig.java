@@ -1,10 +1,12 @@
 package com.github.wendao76.config;
 
+import com.github.wendao76.component.GlobalExceptionResolver;
 import com.github.wendao76.component.ReqEntityArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -31,6 +33,12 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		super.configureAsyncSupport(configurer);
 	}
 
+	@Override
+	protected void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+		exceptionResolvers.add(new GlobalExceptionResolver());
+		super.extendHandlerExceptionResolvers(exceptionResolvers);
+	}
+
 	@Bean(name = "asyncPoolTaskExecutor")
 	public ThreadPoolTaskExecutor getAsyncThreadPoolTaskExecutor() {
 		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
@@ -39,6 +47,20 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		taskExecutor.setQueueCapacity(25);
 		taskExecutor.setKeepAliveSeconds(200);
 		taskExecutor.setThreadNamePrefix("callable-");
+		// 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者
+		taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+		taskExecutor.initialize();
+		return taskExecutor;
+	}
+
+	@Bean(name = "deferredResultPoolTaskExecutor")
+	public ThreadPoolTaskExecutor deferredResultThreadPoolTaskExecutor() {
+		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+		taskExecutor.setCorePoolSize(20);
+		taskExecutor.setMaxPoolSize(200);
+		taskExecutor.setQueueCapacity(25);
+		taskExecutor.setKeepAliveSeconds(200);
+		taskExecutor.setThreadNamePrefix("deferredResult-");
 		// 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者
 		taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
 		taskExecutor.initialize();

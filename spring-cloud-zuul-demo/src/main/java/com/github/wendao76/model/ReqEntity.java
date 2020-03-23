@@ -16,7 +16,10 @@ import java.util.Map;
  */
 @Data
 public class ReqEntity implements Serializable {
+	//请求唯一表示
 	private String requestId;
+	//实例ID
+	private String appInstanceId;
 	//请求方法
 	private RequestMethod requestMethod;
 	private String url;

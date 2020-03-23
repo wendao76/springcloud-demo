@@ -16,5 +16,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Data
 public class DeferredResultHolder {
-	private Map<String, DeferredResult<RespEntity>> map = new ConcurrentHashMap<>();
+	private static Map<String, DeferredResult<RespEntity>> map = new ConcurrentHashMap<>();
+
+	public static DeferredResult<RespEntity> get(String key) {
+		return map.get(key);
+	}
+
+	public static void put(String key, DeferredResult<RespEntity> deferredResult) {
+		map.put(key, deferredResult);
+	}
 }

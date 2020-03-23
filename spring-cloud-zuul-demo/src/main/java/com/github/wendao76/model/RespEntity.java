@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 @Data
 public class RespEntity implements Serializable {
+	private String requestId;
 	private String msg = "";
 	private Integer code = 0;
 	private Object data;
