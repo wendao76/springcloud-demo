@@ -9,3 +9,10 @@
    <version>2.2.0.RELEASE</version>
 </dependency>
 ```
+ * 加入过滤器
+ 
+> 继承ZuulFilter  
+> Bean方式注入
+ * 配置异步请求支持
+> 创建TaskExecutor 任务池
+> 配置 configureAsyncSupport 方法加入任务池

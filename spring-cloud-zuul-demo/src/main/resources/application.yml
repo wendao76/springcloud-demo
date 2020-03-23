@@ -1,0 +1,16 @@
+server:
+  port: 8888
+spring:
+  application:
+    name:
+      microservice-gateway-zuul
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:10000/eureka/,http://127.0.0.1:10001/eureka/
+zuul:
+  routes:
+    spring-service-producer:
+      path: /producer/**
+      serviceId: spring-service-producer
+  servlet-path: /openapi/gateway

@@ -4,3 +4,4 @@ eureka.client.serviceUrl.defaultZone=http://127.0.0.1:10000/eureka/,http://127.0
 management.endpoints.web.base-path=/monitor
 management.endpoints.web.exposure.include=*
 zuul.routes.spring-service-producer=/provider/**
+zuul.routes.spring-service-producer.stripPrefix=true
