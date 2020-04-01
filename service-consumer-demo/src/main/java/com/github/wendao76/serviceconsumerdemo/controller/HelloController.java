@@ -3,15 +3,13 @@ package com.github.wendao76.serviceconsumerdemo.controller;
 import com.github.wendao76.serviceconsumerdemo.service.HelloRemote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author wendao76
  */
-@RestController
-@RequestMapping("/consumer")
+//@RestController
+//@RequestMapping("/consumer")
 public class HelloController {
     @Autowired
     HelloRemote helloRemote;

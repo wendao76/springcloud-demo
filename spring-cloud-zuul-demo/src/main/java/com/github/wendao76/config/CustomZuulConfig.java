@@ -5,7 +5,9 @@ import com.github.wendao76.component.GlobalRouteLocator;
 import com.github.wendao76.component.UrlRewriteFilter;
 import com.github.wendao76.component.ZuulExceptionResolver;
 import com.squareup.okhttp.OkHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletPath;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,28 +26,30 @@ public class CustomZuulConfig {
 	@Resource
 	protected ZuulProperties zuulProperties;
 
-	@Bean
+	@Autowired
+	DiscoveryClient discoveryClient;
+
+	//	@Bean
 	public GlobalRouteLocator globalRouteLocator(DispatcherServletPath server) {
 		return new GlobalRouteLocator(server.getPrefix(), zuulProperties);
 	}
 
-	@Bean
+	//	@Bean
 	public UrlRewriteFilter urlRewriteFilter() {
 		return new UrlRewriteFilter();
 	}
 
-	@Bean
+	//	@Bean
 	public AuthorizationFilter authorizationFilter() {
 		return new AuthorizationFilter();
 	}
 
 	@Bean
 	public OkHttpClient okHttpClient() {
-		OkHttpClient okHttpClient = new OkHttpClient();
-		return okHttpClient;
+		return new OkHttpClient();
 	}
 
-	@Bean
+	//	@Bean
 	public ZuulExceptionResolver zuulExceptionResolver() {
 		return new ZuulExceptionResolver();
 	}

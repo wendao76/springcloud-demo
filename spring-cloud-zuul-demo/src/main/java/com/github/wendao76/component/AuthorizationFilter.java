@@ -31,7 +31,8 @@ public class AuthorizationFilter extends ZuulFilter {
 	@Override
 	public Object run() throws ZuulException {
 		System.out.println("AuthorizationFilter.run");
-		if (true) {
+		if (false) {
+			//通过异常抛出的方式拦截
 			throw new ZuulException("认证失败", 10000, "身份校验不通过");
 		}
 		//TODO 加入认证过滤器

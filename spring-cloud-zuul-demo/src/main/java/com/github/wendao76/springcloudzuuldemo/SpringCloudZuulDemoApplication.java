@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableZuulProxy
+//@EnableEurekaClient
 @ComponentScan(basePackages = {"com.github.wendao76.*"})
 public class SpringCloudZuulDemoApplication {
     public static void main(String[] args) {

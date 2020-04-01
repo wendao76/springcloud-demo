@@ -25,11 +25,11 @@ public class MqReceiveClient {
 	@Qualifier("deferredResultPoolTaskExecutor")
 	ThreadPoolTaskExecutor taskExecutor;
 
-	@RabbitListener(queues = {"queue-async-task"})
-	public void receive01(Message message) {
-		byte[] body = message.getBody();
-		System.out.println("receive01 = " + new String(body));
-	}
+//	@RabbitListener(queues = {"queue-async-task"})
+//	public void receive01(Message message) {
+//		byte[] body = message.getBody();
+//		System.out.println("receive01 = " + new String(body));
+//	}
 
 	@RabbitListener(queues = {"queue-async-task-${appInstanceId}"})
 	public void receive02(Message message) {
