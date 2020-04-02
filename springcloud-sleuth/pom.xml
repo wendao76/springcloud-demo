@@ -9,9 +9,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.github.wendao76</groupId>
-    <artifactId>spring-cloud-sleuth</artifactId>
+    <artifactId>springcloud-sleuth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud-sleuth</name>
+    <name>springcloud-sleuth</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
