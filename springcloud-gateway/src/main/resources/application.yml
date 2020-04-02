@@ -1,0 +1,37 @@
+server:
+  port: 9098
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: spring-cloud-gateway
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: webflux-websocket
+          uri: lb://ws
+          predicates:
+            # 重点！转发该路径！
+            - Path=/ws/info/**
+        - id: bulletscreen
+          # 重点！lb:ws://代表从注册中心获取服务，并且转发协议为websocket，这种格式怀疑人生！
+          uri: lb:ws://ws
+          predicates:
+            # 转发/bullet端点下的所有路径
+            - Path=/ws/**
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+logging:
+  level:
+    cn.com.bosssoft.gpmscloud.openapi: DEBUG
