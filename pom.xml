@@ -4,13 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>eureka-server-demo</module>
-        <module>spring-cloud-sleuth-demo</module>
-        <module>spring-cloud-config-server-demo</module>
-        <module>spring-cloud-zuul-demo</module>
-        <module>service-consumer-demo</module>
-        <module>service-provider-demo</module>
-        <module>demo-assembly</module>
+        <module>mvc-service-provider</module>
+        <module>webflux-websocket</module>
+        <module>sleuth</module>
+        <module>zuul-gateway</module>
+        <module>mvc-service-provider</module>
+        <module>mvc-service-consumer</module>
+        <module>config-server</module>
+        <module>assembly-start</module>
+        <module>eureka-server</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

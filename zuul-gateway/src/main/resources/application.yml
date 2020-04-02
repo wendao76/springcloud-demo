@@ -1,0 +1,31 @@
+server:
+  port: 8000
+spring:
+  application:
+    name:
+      microservice-gateway-zuul
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 3
+custom-mq:
+  exchangeName: qpx-achive
+  queueNamePre: queue-async-task
+  defaultRouteKey: 123456
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: http://127.0.0.1:10000/eureka/,http://127.0.0.1:10001/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/
+zuul:
+  routes:
+    spring-service-producer:
+      path: /producer/**
+      serviceId: spring-service-producer
+  servlet-path: /openapi/gateway
