@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>mvc-service-provider</module>
         <module>webflux-websocket</module>
         <module>springcloud-sleuth</module>
         <module>zuul-gateway</module>
@@ -16,7 +15,7 @@
         <module>springcloud-gateway</module>
     </modules>
     <groupId>com.github.wendao76</groupId>
-    <artifactId>springcloud-demo</artifactId>
+    <artifactId>springc-loud-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-demo</name>
     <description>SpringCloud多组件测试</description>
