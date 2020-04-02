@@ -10,6 +10,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>demo-assembly</artifactId>
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.github.wendao76</groupId>
