@@ -19,7 +19,7 @@ spring:
           uri: lb://ws
           predicates:
             # 重点！转发该路径！
-            - Path=/ws/info/**
+            - Path=/ws/msg/**
         - id: bulletscreen
           # 重点！lb:ws://代表从注册中心获取服务，并且转发协议为websocket，这种格式怀疑人生！
           uri: lb:ws://ws
