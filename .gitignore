@@ -40,3 +40,4 @@ build/
 /spring-cloud-sleuth-demo/.mvn
 /spring-cloud-zuul-demo/jars
 /spring-cloud-zuul-demo/.mvn
+/lsp
