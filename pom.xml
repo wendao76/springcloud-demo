@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
+    <groupId>com.github.wendao76</groupId>
+    <artifactId>springcloud-demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spring-cloud-demo</name>
+    <description>SpringCloud多组件测试</description>
     <modules>
         <module>webflux-websocket</module>
         <module>springcloud-sleuth</module>
@@ -14,11 +25,6 @@
         <module>eureka-server</module>
         <module>springcloud-gateway</module>
     </modules>
-    <groupId>com.github.wendao76</groupId>
-    <artifactId>springc-loud-demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud-demo</name>
-    <description>SpringCloud多组件测试</description>
     <properties>
         <java.version>1.8</java.version>
         <maven.compiler.source>8</maven.compiler.source>
