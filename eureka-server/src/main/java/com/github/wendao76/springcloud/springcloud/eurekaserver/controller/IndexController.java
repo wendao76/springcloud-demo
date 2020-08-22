@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/index")
 public class IndexController {
-	@GetMapping("/{id}")
+	@GetMapping("")
 	public String index(@PathVariable String id) {
+		System.out.println(id);
 		return "Eureka Server is Running";
 	}
 }
