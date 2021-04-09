@@ -1,5 +1,8 @@
 package com.github.wendao76.springcloud.springcloudsleuthdemo;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+
 /**
  * @author wendao76
  * @version 1.0
@@ -7,5 +10,6 @@ package com.github.wendao76.springcloud.springcloudsleuthdemo;
  * @className CustomizeConfig
  * @date 2021-4-9 16:24
  */
-public class CustomizeConfig {
+@Configuration
+public class CustomizeConfig extends WebMvcConfigurationSupport {
 }

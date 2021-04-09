@@ -24,6 +24,7 @@
         <module>assembly-start</module>
         <module>eureka-server</module>
         <module>springcloud-gateway</module>
+        <module>mvc-service-sub</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
